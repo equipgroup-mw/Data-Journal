@@ -7,7 +7,6 @@
 <title>Equip · Independent data on Malawi</title>
 
 <!-- Favicon: 1:1 square lockup (swappable image asset) -->
-<!-- Replace assets/equip-favicon-1x1.png with your actual 1:1 PNG -->
 <link rel="icon" type="image/png" href="assets/equip-favicon-1x1.png">
 
 <!-- Open Graph social image (1:1 lockup for social meta tags) -->
@@ -82,7 +81,6 @@ a { color: inherit; }
   gap: 40px;
 }
 
-/* 2:1 horizontal logo lockup — swappable image asset */
 .logo-slot-2x1 {
   width: 140px;
   height: 70px;
@@ -98,7 +96,6 @@ a { color: inherit; }
   object-fit: contain;
 }
 
-/* Fallback if image is missing */
 .logo-fallback {
   display: flex;
   align-items: center;
@@ -286,7 +283,6 @@ a { color: inherit; }
   line-height: 1.5;
 }
 
-/* Hero chart card */
 .hero-chart-card {
   background: white;
   border: 1px solid var(--beige);
@@ -402,7 +398,6 @@ section { padding: 88px 32px; }
   margin-bottom: 36px;
 }
 
-/* Filter chips */
 .filter-row {
   display: flex;
   gap: 8px;
@@ -444,7 +439,7 @@ section { padding: 88px 32px; }
   border: 1px solid var(--beige);
   display: flex;
   flex-direction: column;
-  transition: border-color 0.15s, transform 0.15s;
+  transition: border-color 0.15s, transform: 0.15s;
   text-decoration: none;
   color: inherit;
 }
@@ -464,23 +459,9 @@ section { padding: 88px 32px; }
   align-items: center;
 }
 
-/* Type 1: Data Story — navy strip */
-.story-card.data-story .story-card-header {
-  background: var(--navy);
-  color: var(--gold-light);
-}
-
-/* Type 2: Explainer — beige strip, plum ink */
-.story-card.explainer .story-card-header {
-  background: var(--beige);
-  color: var(--data-plum);
-}
-
-/* Type 3: Partner Content — grey strip */
-.story-card.partner .story-card-header {
-  background: var(--grey-light);
-  color: var(--ink-soft);
-}
+.story-card.data-story .story-card-header { background: var(--navy); color: var(--gold-light); }
+.story-card.explainer .story-card-header { background: var(--beige); color: var(--data-plum); }
+.story-card.partner .story-card-header { background: var(--grey-light); color: var(--ink-soft); }
 
 .story-card-body {
   padding: 24px;
@@ -801,7 +782,7 @@ section { padding: 88px 32px; }
   font-weight: 500;
 }
 
-/* ───────── Trusted by placeholder ───────── */
+/* ───────── Trusted by Conveyor Belt ───────── */
 .trusted-by {
   padding: 80px 32px;
   background: var(--beige-pale);
@@ -819,75 +800,65 @@ section { padding: 88px 32px; }
   font-variation-settings: "opsz" 144;
 }
 
-.trusted-placeholder {
-  border: 1px dashed var(--blue-grey);
-  padding: 56px 48px;
-  background: white;
-}
-
-.trusted-placeholder p {
-  font-size: 15px;
-  color: var(--ink-soft);
-  max-width: 620px;
-  margin: 0 auto;
-  line-height: 1.65;
-  font-style: italic;
-  text-align: center;
-}
-
-.trusted-placeholder a {
-  color: var(--navy);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-style: normal;
-  font-weight: 500;
-}
-
-
-  /* ───────── Trusted by scrolling banner ───────── */
-.trusted-banner-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
+.logo-conveyor-container {
   background: white;
   border: 1px solid var(--beige);
-  /* Optional: fade out the edges */
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  padding: 40px 24px;
+  overflow: hidden;
+  position: relative;
 }
 
-.trusted-banner-track {
+/* Fade out edges left/right */
+.logo-conveyor-container::before,
+.logo-conveyor-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.logo-conveyor-container::before {
+  left: 0;
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+.logo-conveyor-container::after {
+  right: 0;
+  background: linear-gradient(to left, #ffffff, transparent);
+}
+
+.logo-conveyor-track {
   display: flex;
-  width: max-content;
-  animation: scroll-banner 45s linear infinite;
+  align-items: center;
+  justify-content: center; /* Center them when fewer than 4 */
+  gap: 80px; /* Equally spaced out */
+  transition: transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
-.trusted-banner-track:hover {
-  animation-play-state: paused;
+.logo-conveyor-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px; /* Locked height so different aspect ratios align perfectly */
+  width: 200px; /* Locked width so exactly 4 fit nicely across the container */
 }
 
-.trusted-banner-track img {
-  height: 120px; /* Adjust this if your banner is too tall/short */
-  width: auto;
-  margin-right: 40px; /* Space between image repeats */
+.logo-conveyor-item img {
+  max-height: 100%;
+  max-width: 100%;
   object-fit: contain;
-  display: block;
+  filter: grayscale(100%); /* Optional: makes logos look uniform */
+  opacity: 0.8;
+  transition: filter 0.3s, opacity 0.3s;
 }
 
-@keyframes scroll-banner {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.logo-conveyor-item img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
-/* Reduced motion accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .trusted-banner-track {
-    animation: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-  }
-}
 /* ───────── Footer ───────── */
 .site-footer {
   background: var(--navy-deep);
@@ -996,7 +967,8 @@ section { padding: 88px 32px; }
   .methodology-text { font-size: 20px; }
   .equip-agri { padding: 72px 24px; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .trusted-placeholder { padding: 36px 24px; }
+  .logo-conveyor-item { width: 140px; height: 60px; }
+  .logo-conveyor-track { gap: 40px; }
 }
 
 @media (max-width: 480px) {
@@ -1005,13 +977,11 @@ section { padding: 88px 32px; }
   .logo-slot-2x1 { width: 44px; }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }
 }
 
-/* Touch screens — disable hover-only affordances */
 @media (pointer: coarse) {
   .story-card:hover { border-color: var(--beige); }
 }
@@ -1022,7 +992,6 @@ section { padding: 88px 32px; }
 <!-- ───────── Header ───────── -->
 <header class="site-header">
   <div class="header-inner">
-    <!-- 2:1 horizontal lockup — replace src with your actual 2:1 PNG -->
     <a href="/" class="logo-slot-2x1" aria-label="Equip — home">
       <img src="assets/equip-logo-2x1.png" alt="Equip logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-fallback\'><span class=\'mark\'>E</span> Equip</div>';">
     </a>
@@ -1264,7 +1233,6 @@ section { padding: 88px 32px; }
     </div>
 
     <div class="charts-grid">
-      <!-- Chart 1: Inflation -->
       <article class="chart-card">
         <div class="chart-card-head">
           <div class="chart-card-title-block">
@@ -1319,7 +1287,6 @@ section { padding: 88px 32px; }
         </div>
       </article>
 
-      <!-- Chart 2: Health facilities -->
       <article class="chart-card">
         <div class="chart-card-head">
           <div class="chart-card-title-block">
@@ -1360,7 +1327,6 @@ section { padding: 88px 32px; }
         </div>
       </article>
 
-      <!-- Chart 3: Electricity access -->
       <article class="chart-card">
         <div class="chart-card-head">
           <div class="chart-card-title-block">
@@ -1396,7 +1362,6 @@ section { padding: 88px 32px; }
         </div>
       </article>
 
-      <!-- Chart 4: Voter turnout -->
       <article class="chart-card">
         <div class="chart-card-head">
           <div class="chart-card-title-block">
@@ -1514,28 +1479,20 @@ section { padding: 88px 32px; }
   </div>
 </section>
 
-
-<!-- ───────── Trusted by scrolling banner ───────── -->
+<!-- ───────── Trusted by Conveyor Belt ───────── -->
 <section class="trusted-by">
   <div class="trusted-inner">
     <div class="section-number">№ 03 / Partnerships</div>
     <h2 class="trusted-title">As seen in / trusted by</h2>
     
-    <div class="trusted-banner-container">
-      <div class="trusted-banner-track">
-        <!-- 
-          We place the image TWICE. 
-          Because the track moves left by exactly -50%, when the first image 
-          finishes scrolling, the second one is perfectly positioned to take 
-          its place, creating a seamless, infinite loop.
-        -->
-        <img src="assets/partners-banner.png" alt="Equip partners and trusted organizations">
-        <img src="assets/partners-banner.png" alt="Equip partners and trusted organizations">
+    <div class="logo-conveyor-container">
+      <div class="logo-conveyor-track" id="logo-conveyor-track">
+        <!-- Logos are injected via JavaScript -->
       </div>
     </div>
     
     <p style="margin-top: 20px; font-size: 13px; color: var(--blue-grey); font-style: italic; text-align: center;">
-      If your organization would like to partner with Equip, write to <a href="mailto:info@equipgroup.co" style="color: var(--navy); text-decoration: underline; font-weight: 500;">partnerships@equipgroup.co</a>.
+      If your organization would like to partner with Equip, write to <a href="mailto:info@equipgroup.co" style="color: var(--navy); text-decoration: underline; font-weight: 500;">info@equipgroup.co</a>.
     </p>
   </div>
 </section>
@@ -1548,7 +1505,7 @@ section { padding: 88px 32px; }
         <p class="footer-mission"><strong>Equip</strong> is Malawi's independent data hub — collecting, verifying, and publishing data on Malawi, free to read and free to cite.</p>
         <div class="footer-contact">
           <p>Editorial: <a href="mailto:info@equipgroup.co">info@equipgroup.co</a></p>
-          <p>Partnerships: <a href="mailto:partnerships@equipgroup.co">partnerships@equip.mw</a></p>
+          <p>Partnerships: <a href="mailto:partnerships@equipgroup.co">partnerships@equipgroup.co</a></p>
           <p>Phone: +265 994 67 28 01</p>
           <p>Utz, Bunda Road, Lilongwe 3, Malawi</p>
         </div>
@@ -1560,7 +1517,7 @@ section { padding: 88px 32px; }
         <a href="/charts">Charts library</a>
         <a href="/data-services">Data services</a>
         <a href="/sectors">Sector verticals</a>
-        <a href="https://www.datascienceportfol.io/equipgroup/" target="_blank" rel="noopener" class="btn-subscribe">About</a>
+        <a href="https://www.datascienceportfol.io/equipgroup/" target="_blank" rel="noopener">About</a>
       </div>
 
       <div class="footer-col">
@@ -1629,12 +1586,9 @@ section { padding: 88px 32px; }
   function downloadSVG(svgElement, filename) {
     const serializer = new XMLSerializer();
     let svgString = serializer.serializeToString(svgElement);
-    
-    // Ensure XML declaration and namespace
     if (!svgString.includes('xmlns')) {
       svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
     }
-    
     const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -1649,24 +1603,20 @@ section { padding: 88px 32px; }
   function downloadPNG(svgElement, filename) {
     const serializer = new XMLSerializer();
     let svgString = serializer.serializeToString(svgElement);
-    
     if (!svgString.includes('xmlns')) {
       svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
     }
-    
     const width = 720;
     const height = Math.round(width / (svgElement.viewBox.baseVal.width / svgElement.viewBox.baseVal.height));
-    
     const img = new Image();
     img.onload = function() {
       const canvas = document.createElement('canvas');
-      canvas.width = width * 2; // 2x for retina
+      canvas.width = width * 2;
       canvas.height = height * 2;
       const ctx = canvas.getContext('2d');
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      
       canvas.toBlob(function(blob) {
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -1687,22 +1637,85 @@ section { padding: 88px 32px; }
       const format = btn.dataset.download;
       const targetId = btn.dataset.target;
       const svg = document.getElementById(targetId);
-      
       if (!svg) return;
-      
       const filename = `${targetId}.${format}`;
-      
       if (format === 'svg') {
         downloadSVG(svg, filename);
       } else if (format === 'png') {
         downloadPNG(svg, filename);
       }
-      
       const original = btn.textContent;
       btn.textContent = '✓';
       setTimeout(() => { btn.textContent = original; }, 1200);
     });
   });
+
+  // ───────── Logo Conveyor Belt Logic ─────────
+  // INSTRUCTIONS: 
+  // 1. Create a folder named `logos` inside your `assets` folder.
+  // 2. Put your partner logo PNGs in there.
+  // 3. List the exact filenames in the array below.
+  const logoFiles = [
+    "logo1.png",
+    "logo2.png",
+    "logo3.png",
+    "logo4.png",
+    "logo5.png",
+    "logo6.png",
+    "logo7.png"
+  ];
+
+  const track = document.getElementById('logo-conveyor-track');
+  
+  // Create initial elements
+  logoFiles.forEach(file => {
+    const div = document.createElement('div');
+    div.className = 'logo-conveyor-item';
+    
+    const img = document.createElement('img');
+    img.src = `assets/logos/${file}`;
+    img.alt = "Partner logo";
+    img.onerror = function() {
+      this.style.display = 'none'; // Hide if image is missing
+    };
+    
+    div.appendChild(img);
+    track.appendChild(div);
+  });
+
+  let offset = 0;
+  let itemWidth = 200 + 80; // Matches CSS: width (200px) + gap (80px)
+  let pauseDuration = 5000; // 5 seconds
+
+  function slideLogos() {
+    // Check screen size to adjust item width if CSS media queries kicked in
+    if (window.innerWidth <= 768) {
+      itemWidth = 140 + 40; // Matches mobile CSS: width (140px) + gap (40px)
+    } else {
+      itemWidth = 200 + 80;
+    }
+
+    offset -= itemWidth;
+    track.style.transform = `translateX(${offset}px)`;
+
+    // After the slide animation finishes (0.8s in CSS), reset position and move the first child to the back
+    setTimeout(() => {
+      const firstChild = track.firstChild;
+      track.appendChild(firstChild); // Moves first logo to the end of the line
+      track.style.transition = 'none'; // Disable transition for instant reset
+      offset += itemWidth;
+      track.style.transform = `translateX(${offset}px)`;
+      
+      // Force browser repaint before re-enabling transition
+      void track.offsetHeight; 
+      track.style.transition = 'transform 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)';
+    }, 850); // 850ms matches the 0.8s CSS transition plus a tiny buffer
+  }
+
+  // Start the loop if there are enough logos
+  if (logoFiles.length > 0) {
+    setInterval(slideLogos, pauseDuration);
+  }
 </script>
 
 </body>
