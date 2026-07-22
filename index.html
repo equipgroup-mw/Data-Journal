@@ -6,8 +6,14 @@
 <meta name="description" content="Equip — Malawi's independent data hub. Reliable, visualized, well-sourced data on Malawi, free to read and free to cite.">
 <title>Equip · Independent data on Malawi</title>
 
-<!-- Favicon: 1:1 square lockup (swappable asset) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230d2136'/%3E%3Crect x='22' y='22' width='56' height='56' fill='%23a8935a'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%230d2136'%3EE%3C/text%3E%3C/svg%3E">
+<!-- Favicon: 1:1 square lockup (swappable image asset) -->
+<!-- Replace assets/equip-favicon-1x1.png with your actual 1:1 PNG -->
+<link rel="icon" type="image/png" href="assets/equip-favicon-1x1.png">
+
+<!-- Open Graph social image (1:1 lockup for social meta tags) -->
+<meta property="og:image" content="assets/equip-favicon-1x1.png">
+<meta property="og:title" content="Equip · Independent data on Malawi">
+<meta property="og:description" content="Reliable, visualized, well-sourced data on Malawi.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,37 +84,40 @@ a { color: inherit; }
 
 /* 2:1 horizontal logo lockup — swappable image asset */
 .logo-slot-2x1 {
-  width: 132px;
-  height: 66px;
+  width: 140px;
+  height: 70px;
   display: flex;
   align-items: center;
-  gap: 12px;
   flex-shrink: 0;
   text-decoration: none;
 }
 
-.logo-mark {
+.logo-slot-2x1 img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Fallback if image is missing */
+.logo-fallback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--beige-pale);
+  letter-spacing: -0.015em;
+}
+.logo-fallback .mark {
   width: 40px;
   height: 40px;
   background: var(--gold);
+  color: var(--navy);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
   font-weight: 700;
-  color: var(--navy);
-  font-size: 24px;
-  letter-spacing: -0.03em;
-  font-variation-settings: "opsz" 144;
-}
-
-.logo-text {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 24px;
-  letter-spacing: -0.015em;
-  color: var(--beige-pale);
-  font-variation-settings: "opsz" 144;
 }
 
 .main-nav {
@@ -142,6 +151,7 @@ a { color: inherit; }
   cursor: pointer;
   padding: 8px 4px;
   font-family: inherit;
+  text-decoration: none;
 }
 .btn-text:hover { color: var(--gold-light); }
 
@@ -155,6 +165,8 @@ a { color: inherit; }
   cursor: pointer;
   font-family: inherit;
   transition: background 0.15s;
+  text-decoration: none;
+  display: inline-block;
 }
 .btn-subscribe:hover { background: var(--gold-light); }
 
@@ -433,6 +445,8 @@ section { padding: 88px 32px; }
   display: flex;
   flex-direction: column;
   transition: border-color 0.15s, transform 0.15s;
+  text-decoration: none;
+  color: inherit;
 }
 
 .story-card:hover {
@@ -517,6 +531,12 @@ section { padding: 88px 32px; }
   line-height: 1.5;
 }
 
+.partner-disclosure a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .story-card-meta {
   font-size: 12px;
   color: var(--blue-grey);
@@ -589,6 +609,8 @@ section { padding: 88px 32px; }
   font-family: inherit;
   font-weight: 500;
   transition: all 0.15s;
+  text-decoration: none;
+  display: inline-block;
 }
 .chart-action-btn:hover { border-color: var(--navy); color: var(--navy); }
 
@@ -596,6 +618,7 @@ section { padding: 88px 32px; }
   width: 100%;
   height: auto;
   margin-bottom: 16px;
+  display: block;
 }
 
 .chart-card-footer {
@@ -954,23 +977,22 @@ section { padding: 88px 32px; }
 <!-- ───────── Header ───────── -->
 <header class="site-header">
   <div class="header-inner">
-    <!-- 2:1 horizontal lockup — placeholder for swappable image asset -->
-    <a href="#" class="logo-slot-2x1" aria-label="Equip — home">
-      <div class="logo-mark">E</div>
-      <span class="logo-text">Equip</span>
+    <!-- 2:1 horizontal lockup — replace src with your actual 2:1 PNG -->
+    <a href="/" class="logo-slot-2x1" aria-label="Equip — home">
+      <img src="assets/equip-logo-2x1.png" alt="Equip logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-fallback\'><span class=\'mark\'>E</span> Equip</div>';">
     </a>
     <nav class="main-nav">
-      <a href="#">Home</a>
+      <a href="/">Home</a>
       <a href="#stories">Stories</a>
       <a href="#charts">Charts</a>
-      <a href="#">Data Services</a>
+      <a href="/data-services">Data Services</a>
       <a href="#agri">Sectors</a>
-      <a href="#">About</a>
-      <a href="#">FAQ</a>
+      <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
     </nav>
     <div class="header-actions">
-      <button class="btn-text">Sign in</button>
-      <button class="btn-subscribe">Subscribe</button>
+      <a href="/signin" class="btn-text">Sign in</a>
+      <a href="/subscribe" class="btn-subscribe">Subscribe</a>
     </div>
   </div>
 </header>
@@ -1002,25 +1024,21 @@ section { padding: 88px 32px; }
         <h2 class="hero-chart-title">Maize production, 2016–2024</h2>
         <p class="hero-chart-dek">Annual harvest in million tonnes. The 2016 dip reflects the El Niño-induced drought; 2024 figures are preliminary.</p>
 
-        <svg class="hero-chart-svg" viewBox="0 0 400 220" role="img" aria-label="Maize production 2016 to 2024, line chart">
-          <!-- gridlines -->
+        <svg class="hero-chart-svg" id="hero-chart" viewBox="0 0 400 220" role="img" aria-label="Maize production 2016 to 2024, line chart">
           <line x1="40" y1="20" x2="380" y2="20" stroke="#e6e1da" stroke-width="1"/>
           <line x1="40" y1="60" x2="380" y2="60" stroke="#e6e1da" stroke-width="1"/>
           <line x1="40" y1="100" x2="380" y2="100" stroke="#e6e1da" stroke-width="1"/>
           <line x1="40" y1="140" x2="380" y2="140" stroke="#e6e1da" stroke-width="1"/>
           <line x1="40" y1="180" x2="380" y2="180" stroke="#0d2136" stroke-width="1.5"/>
 
-          <!-- y labels -->
           <text x="34" y="24" text-anchor="end" font-size="10" fill="#8a949e" font-family="Inter">5M</text>
           <text x="34" y="64" text-anchor="end" font-size="10" fill="#8a949e" font-family="Inter">4M</text>
           <text x="34" y="104" text-anchor="end" font-size="10" fill="#8a949e" font-family="Inter">3M</text>
           <text x="34" y="144" text-anchor="end" font-size="10" fill="#8a949e" font-family="Inter">2M</text>
 
-          <!-- data line -->
           <polyline points="60,124 100,80 140,88 180,68 220,48 260,36 300,72 340,56 380,64"
                     fill="none" stroke="#a8935a" stroke-width="2"/>
 
-          <!-- data points -->
           <circle cx="60" cy="124" r="3.5" fill="#a8935a"/>
           <circle cx="100" cy="80" r="3.5" fill="#a8935a"/>
           <circle cx="140" cy="88" r="3.5" fill="#a8935a"/>
@@ -1031,11 +1049,9 @@ section { padding: 88px 32px; }
           <circle cx="340" cy="56" r="3.5" fill="#a8935a"/>
           <circle cx="380" cy="64" r="3.5" fill="#a8935a"/>
 
-          <!-- editorial annotation: 2016 drought -->
           <line x1="60" y1="128" x2="60" y2="156" stroke="#7e2138" stroke-width="1" stroke-dasharray="2,2"/>
           <text x="66" y="166" font-size="9.5" fill="#7e2138" font-family="Inter" font-style="italic">2016 El Niño drought</text>
 
-          <!-- x labels -->
           <text x="60" y="200" text-anchor="middle" font-size="10" fill="#8a949e" font-family="Inter">'16</text>
           <text x="100" y="200" text-anchor="middle" font-size="10" fill="#8a949e" font-family="Inter">'17</text>
           <text x="140" y="200" text-anchor="middle" font-size="10" fill="#8a949e" font-family="Inter">'18</text>
@@ -1063,7 +1079,7 @@ section { padding: 88px 32px; }
         <div class="section-number">№ 01 / Editorial</div>
         <h2 class="section-title">Latest stories</h2>
       </div>
-      <a href="#" class="section-link">View all stories →</a>
+      <a href="/stories" class="section-link">View all stories →</a>
     </div>
 
     <p class="section-dek">Three formats, labeled at the top of each piece so they're never confused: <strong>Data Stories</strong> are reported journalism with original analysis; <strong>Explainers</strong> are primers on what an indicator measures and where it comes from; <strong>Partner Content</strong> is commissioned or sponsored, with editorial control retained by Equip.</p>
@@ -1079,8 +1095,7 @@ section { padding: 88px 32px; }
     </div>
 
     <div class="stories-grid">
-      <!-- Card 1: Data Story -->
-      <article class="story-card data-story">
+      <a href="/stories/1" class="story-card data-story">
         <div class="story-card-header">
           <span>Data Story</span>
           <span>14 Nov 2024</span>
@@ -1094,10 +1109,9 @@ section { padding: 88px 32px; }
             <span>— min read</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Card 2: Explainer -->
-      <article class="story-card explainer">
+      <a href="/stories/2" class="story-card explainer">
         <div class="story-card-header">
           <span>Explainer</span>
           <span>12 Nov 2024</span>
@@ -1111,10 +1125,9 @@ section { padding: 88px 32px; }
             <span>— min read</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Card 3: Partner Content -->
-      <article class="story-card partner">
+      <a href="/stories/3" class="story-card partner">
         <div class="story-card-header">
           <span>Partner Content</span>
           <span>08 Nov 2024</span>
@@ -1123,16 +1136,15 @@ section { padding: 88px 32px; }
           <div class="story-card-sector">Health</div>
           <h3 class="story-card-title">[Partner content title placeholder]</h3>
           <p class="story-card-dek">[Partner content placeholder. Commissioned pieces are labeled at the top, in the byline, and in the body. Equip retains editorial control — partners do not review independent coverage.]</p>
-          <div class="partner-disclosure">Commissioned by [partner name]. Editorial control retained by Equip. Read our <a href="#" style="color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px;">sponsored content policy</a>.</div>
+          <div class="partner-disclosure">Commissioned by [partner name]. Editorial control retained by Equip. Read our <a href="/sponsored-content-policy">sponsored content policy</a>.</div>
           <div class="story-card-meta">
             <span>By [author]</span>
             <span>— min read</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Card 4 -->
-      <article class="story-card data-story">
+      <a href="/stories/4" class="story-card data-story">
         <div class="story-card-header">
           <span>Data Story</span>
           <span>05 Nov 2024</span>
@@ -1146,10 +1158,9 @@ section { padding: 88px 32px; }
             <span>— min read</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Card 5 -->
-      <article class="story-card explainer">
+      <a href="/stories/5" class="story-card explainer">
         <div class="story-card-header">
           <span>Explainer</span>
           <span>02 Nov 2024</span>
@@ -1163,10 +1174,9 @@ section { padding: 88px 32px; }
             <span>— min read</span>
           </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Card 6 -->
-      <article class="story-card data-story">
+      <a href="/stories/6" class="story-card data-story">
         <div class="story-card-header">
           <span>Data Story</span>
           <span>29 Oct 2024</span>
@@ -1180,7 +1190,7 @@ section { padding: 88px 32px; }
             <span>— min read</span>
           </div>
         </div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
@@ -1193,7 +1203,7 @@ section { padding: 88px 32px; }
         <div class="section-number">№ 02 / Publisher Central</div>
         <h2 class="section-title">Charts library</h2>
       </div>
-      <a href="#" class="section-link">Browse full library →</a>
+      <a href="/charts" class="section-link">Browse full library →</a>
     </div>
 
     <p class="section-dek">Every chart is downloadable as PNG (for slides and reports) and editable SVG (for designers and developers). Each carries a source citation and last-updated date — attribution required for republication, CC-BY 4.0 for non-commercial use.</p>
@@ -1217,12 +1227,12 @@ section { padding: 88px 32px; }
             <h3 class="chart-card-title">Headline inflation rate, monthly</h3>
           </div>
           <div class="chart-card-actions">
-            <button class="chart-action-btn">PNG</button>
-            <button class="chart-action-btn">SVG</button>
+            <button class="chart-action-btn" data-download="png" data-target="chart-1">PNG</button>
+            <button class="chart-action-btn" data-download="svg" data-target="chart-1">SVG</button>
           </div>
         </div>
 
-        <svg class="chart-card-svg" viewBox="0 0 360 200" role="img" aria-label="Headline inflation rate by month, vertical bar chart">
+        <svg class="chart-card-svg" id="chart-1" viewBox="0 0 360 200" role="img" aria-label="Headline inflation rate by month, vertical bar chart">
           <line x1="30" y1="50" x2="350" y2="50" stroke="#e6e1da" stroke-width="1"/>
           <line x1="30" y1="80" x2="350" y2="80" stroke="#e6e1da" stroke-width="1"/>
           <line x1="30" y1="110" x2="350" y2="110" stroke="#e6e1da" stroke-width="1"/>
@@ -1272,12 +1282,12 @@ section { padding: 88px 32px; }
             <h3 class="chart-card-title">Public health facilities by region</h3>
           </div>
           <div class="chart-card-actions">
-            <button class="chart-action-btn">PNG</button>
-            <button class="chart-action-btn">SVG</button>
+            <button class="chart-action-btn" data-download="png" data-target="chart-2">PNG</button>
+            <button class="chart-action-btn" data-download="svg" data-target="chart-2">SVG</button>
           </div>
         </div>
 
-        <svg class="chart-card-svg" viewBox="0 0 360 200" role="img" aria-label="Public health facilities by region, horizontal bar chart">
+        <svg class="chart-card-svg" id="chart-2" viewBox="0 0 360 200" role="img" aria-label="Public health facilities by region, horizontal bar chart">
           <text x="80" y="42" text-anchor="end" font-size="11.5" fill="#0d2136" font-family="Inter">Southern</text>
           <rect x="90" y="30" width="260" height="20" fill="#004551"/>
           <text x="344" y="44" text-anchor="end" font-size="11" fill="#f4f2ef" font-family="Inter" font-weight="600">240</text>
@@ -1313,12 +1323,12 @@ section { padding: 88px 32px; }
             <h3 class="chart-card-title">Electricity access: urban vs rural</h3>
           </div>
           <div class="chart-card-actions">
-            <button class="chart-action-btn">PNG</button>
-            <button class="chart-action-btn">SVG</button>
+            <button class="chart-action-btn" data-download="png" data-target="chart-3">PNG</button>
+            <button class="chart-action-btn" data-download="svg" data-target="chart-3">SVG</button>
           </div>
         </div>
 
-        <svg class="chart-card-svg" viewBox="0 0 360 200" role="img" aria-label="Electricity access comparison urban vs rural, paired bar chart">
+        <svg class="chart-card-svg" id="chart-3" viewBox="0 0 360 200" role="img" aria-label="Electricity access comparison urban vs rural, paired bar chart">
           <text x="20" y="48" font-size="13" fill="#0d2136" font-family="Inter" font-weight="500">Urban</text>
           <rect x="20" y="58" width="272" height="38" fill="#002937"/>
           <text x="284" y="84" text-anchor="end" font-size="22" fill="#f4f2ef" font-family="Fraunces" font-weight="600">85%</text>
@@ -1349,12 +1359,12 @@ section { padding: 88px 32px; }
             <h3 class="chart-card-title">Presidential election turnout</h3>
           </div>
           <div class="chart-card-actions">
-            <button class="chart-action-btn">PNG</button>
-            <button class="chart-action-btn">SVG</button>
+            <button class="chart-action-btn" data-download="png" data-target="chart-4">PNG</button>
+            <button class="chart-action-btn" data-download="svg" data-target="chart-4">SVG</button>
           </div>
         </div>
 
-        <svg class="chart-card-svg" viewBox="0 0 360 200" role="img" aria-label="Presidential election turnout by year, vertical bar chart">
+        <svg class="chart-card-svg" id="chart-4" viewBox="0 0 360 200" role="img" aria-label="Presidential election turnout by year, vertical bar chart">
           <line x1="30" y1="30" x2="350" y2="30" stroke="#e6e1da" stroke-width="1"/>
           <line x1="30" y1="60" x2="350" y2="60" stroke="#e6e1da" stroke-width="1"/>
           <line x1="30" y1="90" x2="350" y2="90" stroke="#e6e1da" stroke-width="1"/>
@@ -1403,7 +1413,7 @@ section { padding: 88px 32px; }
       <p class="agri-tagline">Daily prices, yield estimates, and market-access data for Malawi's staple crops and export commodities — built for the people who plan food security responses and the people who trade.</p>
 
       <div class="agri-cta-block">
-        <a href="#" class="agri-cta">Request access →</a>
+        <a href="/agri/request-access" class="agri-cta">Request access →</a>
         <p class="agri-cta-note">Institutional license. Public archive remains free; daily price feed and API require a subscription. Scholarly access granted on request.</p>
       </div>
     </div>
@@ -1454,8 +1464,8 @@ section { padding: 88px 32px; }
 <section class="methodology-strip">
   <div class="methodology-content">
     <div class="methodology-eyebrow">Editorial standards</div>
-    <p class="methodology-text">Every chart on Equip carries a source citation and a last-updated date. Every story is fact-checked against primary sources. When we get something wrong, we publish the correction on a dedicated <a href="#">Corrections</a> page with a timestamp — not as a silent edit.</p>
-    <a href="#" class="methodology-link">Read the full Methodology & Corrections policy →</a>
+    <p class="methodology-text">Every chart on Equip carries a source citation and a last-updated date. Every story is fact-checked against primary sources. When we get something wrong, we publish the correction on a dedicated <a href="/corrections">Corrections</a> page with a timestamp — not as a silent edit.</p>
+    <a href="/methodology" class="methodology-link">Read the full Methodology & Corrections policy →</a>
   </div>
 </section>
 
@@ -1486,45 +1496,45 @@ section { padding: 88px 32px; }
 
       <div class="footer-col">
         <h4>Sections</h4>
-        <a href="#">Stories</a>
-        <a href="#">Charts library</a>
-        <a href="#">Data services</a>
-        <a href="#">Sector verticals</a>
-        <a href="#">About Equip</a>
+        <a href="/stories">Stories</a>
+        <a href="/charts">Charts library</a>
+        <a href="/data-services">Data services</a>
+        <a href="/sectors">Sector verticals</a>
+        <a href="/about">About Equip</a>
       </div>
 
       <div class="footer-col">
         <h4>Editorial</h4>
-        <a href="#">Methodology &amp; Corrections</a>
-        <a href="#">Source library</a>
-        <a href="#">Editorial standards</a>
-        <a href="#">Submit a tip</a>
-        <a href="#">FAQ</a>
+        <a href="/methodology">Methodology &amp; Corrections</a>
+        <a href="/sources">Source library</a>
+        <a href="/standards">Editorial standards</a>
+        <a href="/submit-tip">Submit a tip</a>
+        <a href="/faq">FAQ</a>
       </div>
 
       <div class="footer-col">
         <h4>Legal &amp; follow</h4>
-        <a href="#">Privacy policy</a>
-        <a href="#">Terms of use</a>
-        <a href="#">Republishing guidelines</a>
-        <a href="#">X / Twitter</a>
-        <a href="#">LinkedIn</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/terms">Terms of use</a>
+        <a href="/republishing">Republishing guidelines</a>
+        <a href="https://twitter.com/equip_mw" target="_blank" rel="noopener">X / Twitter</a>
+        <a href="https://linkedin.com/company/equip-mw" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div>© 2024 Equip. Registration in Malawi pending. Public-data charts are CC-BY 4.0; commercial republication requires a license.</div>
       <div>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Methodology &amp; Corrections</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/methodology">Methodology &amp; Corrections</a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // Filter chip interaction — same behavior on stories and charts
+  // Filter chip interaction
   document.querySelectorAll('.filter-row').forEach(row => {
     const chips = row.querySelectorAll('.chip');
     chips.forEach(chip => {
@@ -1535,7 +1545,7 @@ section { padding: 88px 32px; }
     });
   });
 
-  // Newsletter form — no real submission, just confirmation
+  // Newsletter form submission
   const form = document.getElementById('newsletter-form');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -1555,9 +1565,79 @@ section { padding: 88px 32px; }
     });
   }
 
-  // Chart download button feedback (no real download — demo)
+  // Chart download functionality (PNG and SVG)
+  function downloadSVG(svgElement, filename) {
+    const serializer = new XMLSerializer();
+    let svgString = serializer.serializeToString(svgElement);
+    
+    // Ensure XML declaration and namespace
+    if (!svgString.includes('xmlns')) {
+      svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+    }
+    
+    const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+  }
+
+  function downloadPNG(svgElement, filename) {
+    const serializer = new XMLSerializer();
+    let svgString = serializer.serializeToString(svgElement);
+    
+    if (!svgString.includes('xmlns')) {
+      svgString = svgString.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+    }
+    
+    const width = 720;
+    const height = Math.round(width / (svgElement.viewBox.baseVal.width / svgElement.viewBox.baseVal.height));
+    
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      canvas.width = width * 2; // 2x for retina
+      canvas.height = height * 2;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      
+      canvas.toBlob(function(blob) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+      }, 'image/png');
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+  }
+
   document.querySelectorAll('.chart-action-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const format = btn.dataset.download;
+      const targetId = btn.dataset.target;
+      const svg = document.getElementById(targetId);
+      
+      if (!svg) return;
+      
+      const filename = `${targetId}.${format}`;
+      
+      if (format === 'svg') {
+        downloadSVG(svg, filename);
+      } else if (format === 'png') {
+        downloadPNG(svg, filename);
+      }
+      
       const original = btn.textContent;
       btn.textContent = '✓';
       setTimeout(() => { btn.textContent = original; }, 1200);
