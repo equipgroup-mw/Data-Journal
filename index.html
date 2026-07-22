@@ -843,6 +843,51 @@ section { padding: 88px 32px; }
   font-weight: 500;
 }
 
+
+  /* ───────── Trusted by scrolling banner ───────── */
+.trusted-banner-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background: white;
+  border: 1px solid var(--beige);
+  /* Optional: fade out the edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.trusted-banner-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-banner 45s linear infinite;
+}
+
+.trusted-banner-track:hover {
+  animation-play-state: paused;
+}
+
+.trusted-banner-track img {
+  height: 120px; /* Adjust this if your banner is too tall/short */
+  width: auto;
+  margin-right: 40px; /* Space between image repeats */
+  object-fit: contain;
+  display: block;
+}
+
+@keyframes scroll-banner {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .trusted-banner-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+}
 /* ───────── Footer ───────── */
 .site-footer {
   background: var(--navy-deep);
@@ -987,7 +1032,7 @@ section { padding: 88px 32px; }
       <a href="#charts">Charts</a>
       <a href="/data-services">Data Services</a>
       <a href="#agri">Sectors</a>
-      <a href="https://www.datascienceportfol.io/equipgroup" target="_blank" rel="noopener" class="btn-subscribe">About</a>
+      <a href="https://www.datascienceportfol.io/equipgroup" target="_blank" rel="noopener">About</a>
       <a href="/faq">FAQ</a>
     </nav>
     <div class="header-actions">
@@ -1469,14 +1514,29 @@ section { padding: 88px 32px; }
   </div>
 </section>
 
-<!-- ───────── Trusted by (empty by design) ───────── -->
+
+<!-- ───────── Trusted by scrolling banner ───────── -->
 <section class="trusted-by">
   <div class="trusted-inner">
     <div class="section-number">№ 03 / Partnerships</div>
     <h2 class="trusted-title">As seen in / trusted by</h2>
-    <div class="trusted-placeholder">
-      <p>This section is intentionally empty. We do not display partner or media logos until a formal agreement is in place — and we never list institutions that have merely cited our public data without an editorial or funding relationship. If your organization would like to partner, write to <a href="mailto:partnerships@equip.mw">partnerships@equip.mw</a>.</p>
+    
+    <div class="trusted-banner-container">
+      <div class="trusted-banner-track">
+        <!-- 
+          We place the image TWICE. 
+          Because the track moves left by exactly -50%, when the first image 
+          finishes scrolling, the second one is perfectly positioned to take 
+          its place, creating a seamless, infinite loop.
+        -->
+        <img src="assets/partners-banner.png" alt="Equip partners and trusted organizations">
+        <img src="assets/partners-banner.png" alt="Equip partners and trusted organizations">
+      </div>
     </div>
+    
+    <p style="margin-top: 20px; font-size: 13px; color: var(--blue-grey); font-style: italic; text-align: center;">
+      If your organization would like to partner with Equip, write to <a href="mailto:info@equipgroup.co" style="color: var(--navy); text-decoration: underline; font-weight: 500;">partnerships@equipgroup.co</a>.
+    </p>
   </div>
 </section>
 
